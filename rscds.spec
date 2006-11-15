@@ -1,10 +1,11 @@
 Summary:	Really Simple CalDAV Store
+Summary(pl):	Really Simple CalDAV Store - proste sk³adowisko CalDAV
 Name:		rscds
 Version:	0.2.2
 Release:	1
 License:	GPL
 Group:		Applications/WWW
-Source0:	http://dl.sourceforge.net/rscds/rscds_0.2.2.tar.gz
+Source0:	http://dl.sourceforge.net/rscds/rscds_%{version}.tar.gz
 # Source0-md5:	3a5efdd04db69d90d78cb7fde70b2a45
 Source1:	%{name}-apache.conf
 Source2:	%{name}-lighttpd.conf
@@ -29,6 +30,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Really Simple CalDAV Store.
 
+%description -l pl
+Really Simple CalDAV Store - proste sk³adowisko CalDAV.
+
 %prep
 %setup -q -n %{name}
 install %{SOURCE1} apache.conf
@@ -45,6 +49,9 @@ install lighttpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 cp -a config dba htdocs  inc $RPM_BUILD_ROOT%{_appdir}
 mv $RPM_BUILD_ROOT%{_appdir}/config/config.php $RPM_BUILD_ROOT%{_sysconfdir}/config.php
 ln -sf %{_sysconfdir}/config.php $RPM_BUILD_ROOT%{_appdir}/config/config.php
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %triggerin -- apache1 < 1.3.37-3, apache1-base
 %webapp_register apache %{_webapp}
@@ -63,9 +70,6 @@ ln -sf %{_sysconfdir}/config.php $RPM_BUILD_ROOT%{_appdir}/config/config.php
 
 %triggerun -- lighttpd
 %webapp_unregister lighttpd %{_webapp}
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
