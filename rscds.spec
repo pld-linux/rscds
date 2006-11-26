@@ -2,23 +2,17 @@ Summary:	Really Simple CalDAV Store
 Summary(pl):	Really Simple CalDAV Store - proste sk³adowisko CalDAV
 Name:		rscds
 Version:	0.2.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/WWW
-Source0:	http://dl.sourceforge.net/rscds/rscds_%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/rscds/%{name}_%{version}.tar.gz
 # Source0-md5:	3a5efdd04db69d90d78cb7fde70b2a45
 Source1:	%{name}-apache.conf
 Source2:	%{name}-lighttpd.conf
 URL:		http://rscds.sourceforge.net/
 BuildRequires:	rpmbuild(macros) >= 1.268
+Requires:	php(awl)
 Requires:	webapps
-Requires:	php-awl
-# see SOURCES/webapps.README for description and complete listing
-#Requires:	webserver(access)
-#Requires:	webserver(alias)
-#Requires:	webserver(auth)
-#Requires:	webserver(cgi)
-#Requires:	webserver(indexfile)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -35,17 +29,14 @@ Really Simple CalDAV Store - proste sk³adowisko CalDAV.
 
 %prep
 %setup -q -n %{name}
-install %{SOURCE1} apache.conf
-install %{SOURCE2} lighttpd.conf
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_appdir}}
 
-#install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
-install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
-install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
-install lighttpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
 cp -a config dba htdocs  inc $RPM_BUILD_ROOT%{_appdir}
 mv $RPM_BUILD_ROOT%{_appdir}/config/config.php $RPM_BUILD_ROOT%{_sysconfdir}/config.php
 ln -sf %{_sysconfdir}/config.php $RPM_BUILD_ROOT%{_appdir}/config/config.php
