@@ -1,5 +1,5 @@
 Summary:	Really Simple CalDAV Store
-Summary(pl):	Really Simple CalDAV Store - proste sk≥adowisko CalDAV
+Summary(pl.UTF-8):   Really Simple CalDAV Store - proste sk≈Çadowisko CalDAV
 Name:		rscds
 Version:	0.2.2
 Release:	2
@@ -24,8 +24,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Really Simple CalDAV Store.
 
-%description -l pl
-Really Simple CalDAV Store - proste sk≥adowisko CalDAV.
+%description -l pl.UTF-8
+Really Simple CalDAV Store - proste sk≈Çadowisko CalDAV.
 
 %prep
 %setup -q -n %{name}
