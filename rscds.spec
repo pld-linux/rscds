@@ -1,5 +1,5 @@
 Summary:	Really Simple CalDAV Store
-Summary(pl.UTF-8):   Really Simple CalDAV Store - proste składowisko CalDAV
+Summary(pl.UTF-8):	Really Simple CalDAV Store - proste składowisko CalDAV
 Name:		rscds
 Version:	0.2.2
 Release:	2
